@@ -1,9 +1,9 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,10 +11,22 @@ body{
     background: linear-gradient(to right, #ff0000, #fb2020);
 }
 
-.display{
-border: solid 20px white;
-width: 500px;
-height: 250px;
-border-radius: 2em;
-background-color: deepskyblue;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 0 2em 0;
+    width: 100%; 
+}
+
+.header > * {
+    margin: 0 1.2em; 
+}
+
+.display {
+    border: solid 20px white;
+    width: 500px;
+    height: 250px;
+    border-radius: 2em;
+    background-color: deepskyblue;
 }
