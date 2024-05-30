@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Pokedex</title>
 </head>
 <body>
@@ -11,12 +12,18 @@
         <img src="logo-pokemon-79x45.png" alt="icon Pokedex">
         <div class="search-bar-box">
             <input type="text" id="search-bar" placeholder="Digite o nome de algum pokemon">
-            <button id="search-button">ok</button>
+            <button id="search-button"><i class="fas fa-dragon"></i></button>
         </div>
     </div>
     <div class="pokedex">
         <img src="display.png" alt="display">
-        <div id="display-information"></div>
+        <div id="display-information">
+            <div id="display-information-screen"></div>
+            <div id="buttons">
+                <button><i class="fas fa-arrow-left"></i></button>
+                <button><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
     </div>
     
 </body>
