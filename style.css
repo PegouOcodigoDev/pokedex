@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ff0000, #fb2020);
+}
+
+.display{
+border: solid 20px white;
+width: 500px;
+height: 250px;
+border-radius: 2em;
+background-color: deepskyblue;
+}
