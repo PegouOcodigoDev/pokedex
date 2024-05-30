@@ -64,10 +64,21 @@ body {
     box-shadow: none;
 }
 
-.display {
-    border: solid 20px white;
-    width: 500px;
-    height: 250px;
-    border-radius: 2em;
-    background-color: deepskyblue;
+.pokedex{
+    display: flex;
+    flex-direction: row;
+}
+
+#display-information {
+    width: 400px;
+    height: 200px; 
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #ff0000; 
+    background-image: url('screen.png'); 
+    background-repeat: repeat;
+    background-size: cover;
+    box-shadow: 0 0 5px black;
+    position: relative;
+    top: 3.4em;
 }
