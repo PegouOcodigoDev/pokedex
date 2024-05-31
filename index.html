@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Pokedex</title>
 </head>
@@ -11,107 +12,109 @@
     <div class="header">
         <img src="logo-pokemon-79x45.png" alt="icon Pokedex">
         <div class="search-bar-box">
-            <input type="text" id="search-bar" placeholder="Digite o nome de algum pokemon">
-            <button id="search-button"><i class="fas fa-dragon"></i></button>
+            <input type="text" class="search-bar" placeholder="Digite o nome de algum pokemon">
+            <button class="search-button"><i class="fas fa-dragon"></i></button>
         </div>
     </div>
     <div class="pokedex">
-        <div id="poke-view"><img src="display.png" alt="display"></div>
-        <div id="display-information">
-            <div id="display-information-screen"></div>
-            <div id="buttons">
-                <button><i class="fa-solid fa-shuffle"></i></button>
-                <div>
+        <div class="poke-view">
+            <img src="display.png" alt="display" class="background-image">
+            <img src="question-mark.png" alt="question mark" class="overlay-image">
+        </div>
+        <div class="display-information">
+            <div class="display-information-screen"></div>
+            <div class="buttons">
+                <button><i class="fas fa-shuffle"></i></button>
+                <div class="navigation-buttons">
                     <button><i class="fas fa-arrow-left"></i></button>
                     <button><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="pokemons">
+    <div class="pokemons">
         <div class="pokemon-view">
             <div class="pre-info">
                 <p>Picachu</p>
                 <p>1</p>
                 <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
                 </div>
             </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
+        </div> <div class="pokemon-view">
+            <div class="pre-info">
+                <p>Picachu</p>
+                <p>1</p>
+                <div>
+                    <div class="type"><i class="fas fa-dragon"></i> Elétrico</div>
+                </div>
+            </div>
+            <div class="image"><img src="logo-pokemon-79x45.png" alt="Picachu"></div>
         </div>
-        <div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div><div class="pokemon-view">
-            <div class="pre-info">
-                <p>Picachu</p>
-                <p>1</p>
-                <div>
-                    <div class="type"> <i class="fas fa-dragon"></i> eletrico</div>
-                </div>
-            </div>
-            <div class="image"><img src="logo-pokemon-79x45.png"></div>
-        </div>
-    
+    </div>
 </body>
 </html>

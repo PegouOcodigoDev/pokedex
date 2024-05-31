@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(to right, #ff0000, #fb2020);
+    font-family: 'Press Start 2P', cursive;
 }
 
 .header {
@@ -16,23 +18,23 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 0.5em 0 2em 0;
-    width: 100%; 
+    width: 100%;
 }
 
 .header > * {
-    margin: 0 1.2em; 
+    margin: 0 1.2em;
 }
 
-.search-bar-box{
+.search-bar-box {
     display: flex;
     align-items: center;
     border: 2px solid #FFD700;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); 
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
-#search-bar {
+.search-bar {
     background-color: transparent;
     border: none;
     padding: 0.5em;
@@ -42,16 +44,16 @@ body {
     width: 200px;
 }
 
-#search-bar:focus {
+.search-bar:focus {
     box-shadow: none;
     outline: none;
 }
 
-#search-bar::placeholder{
+.search-bar::placeholder {
     color: white;
 }
 
-#search-button{
+.search-button {
     width: 50px;
     height: 32px;
     background-color: #FFD700;
@@ -60,46 +62,69 @@ body {
     cursor: pointer;
 }
 
-#search-button:focus {
+.search-button:focus {
     box-shadow: none;
 }
 
-.pokedex{
+.pokedex {
     display: flex;
-    flex-direction: row;
     width: 900px;
     height: 400px;
 }
 
-#display-information{
+.poke-view {
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.overlay-image {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.display-information {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: 50%;
 }
 
-#display-information-screen {
-    width: 400px;
-    height: 200px; 
-    border: 1px solid black;
+.display-information-screen {
+    width: 100%;
+    height: 50%;
     border-radius: 6px;
-    background-color: #ff0000; 
-    background-image: url('screen.png'); 
+    background-color: #ff0000;
+    background-image: url('screen.png');
     background-repeat: repeat;
     background-size: cover;
     box-shadow: 0 0 5px black;
 }
 
-#buttons{
+.buttons {
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: space-around;
+    width: 100%;
 }
 
-#buttons button{
+.buttons button {
     background-color: transparent;
-    box-shadow: none;
     border-radius: 6px;
     border: 1px solid black;
     color: white;
@@ -110,58 +135,62 @@ body {
     width: 40px;
 }
 
-#buttons button:hover{
-    border: 1px solid white
+.buttons button:hover {
+    border: 1px solid white;
 }
 
-#pokemons{
+.navigation-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.pokemons {
     width: 1000px;
     height: 600px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
     gap: 1em;
     padding: 0.5em;
 }
 
-.pokemon-view{
-    border: 1px solid black;
+.pokemon-view {
     background-color: green;
     display: flex;
-    flex-direction: row;
     border-radius: 10px;
+    padding: 10px;
 }
 
-.pokemon-view:hover{
+.pokemon-view:hover {
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
 
-.pre-info{
-    width: 40%;
+.pre-info {
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.image{
-    width: 60%;
+.image {
+    width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.pre-info p{
+.pre-info p {
     color: white;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
-.type{
+.type {
     border: 1px solid black;
     padding: 4px;
     border-radius: 5px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
     color: white;
     background-color: #ff0000;
+    font-size: 0.7em;
 }
