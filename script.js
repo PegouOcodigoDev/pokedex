@@ -1,4 +1,4 @@
-const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1118'; 
+const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1118';
 
 function getRandomPokemonList() {
     fetch(pokemonListUrl)
@@ -23,12 +23,10 @@ function getRandomPokemonList() {
         .catch(error => console.log('Erro ao obter lista de pokémons:', error));
 }
 
-
 function getRandomItems(array, count) {
-    const shuffledArray = array.sort(() => Math.random() - 0.5); 
-    return shuffledArray.slice(0, count); 
+    const shuffledArray = array.sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, count);
 }
-
 
 function createPokemonView(pokemonData) {
     const pokemonView = document.createElement('div');
@@ -39,13 +37,12 @@ function createPokemonView(pokemonData) {
     preInfo.innerHTML = `
         <p>${pokemonData.name}</p>
         <p>${pokemonData.id}</p>
-        <div class="type"><i class="fas fa<i class="fas fa-${getTypeIcon(pokemonData.types[0].type.name)}"></i> ${pokemonData.types[0].type.name}</div>
+        <div class="type"><i class="fas fa-${getTypeIcon(pokemonData.types[0].type.name)}"></i> ${pokemonData.types[0].type.name}</div>
     `;
 
     const image = document.createElement('div');
     image.classList.add('image');
     image.innerHTML = `<img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">`;
-
 
     const typeColor = getTypeColor(pokemonData.types[0].type.name);
     pokemonView.style.backgroundColor = typeColor;
@@ -53,9 +50,36 @@ function createPokemonView(pokemonData) {
     pokemonView.appendChild(preInfo);
     pokemonView.appendChild(image);
 
+    pokemonView.onclick = () => {
+        updateDisplayInformation(pokemonData);
+    };
+
     return pokemonView;
 }
 
+function updateDisplayInformation(pokemonData) {
+    const displayScreen = document.querySelector(".display-information-screen");
+
+    const fields = [
+        { label: "Nome", value: pokemonData.name },
+        { label: "Id", value: pokemonData.id },
+        { label: "Tipo", value: pokemonData.types.map(type => type.type.name).join(', ') },
+        { label: "Habilidade", value: pokemonData.abilities.map(ability => ability.ability.name).join(', ') },
+        { label: "Hp", value: pokemonData.stats.find(stat => stat.stat.name === 'hp').base_stat },
+        { label: "Ataque", value: pokemonData.stats.find(stat => stat.stat.name === 'attack').base_stat },
+        { label: "Defesa", value: pokemonData.stats.find(stat => stat.stat.name === 'defense').base_stat }
+    ];
+
+    fields.forEach((field, index) => {
+        const div = displayScreen.children[index * 2];
+        const secondP = div.querySelectorAll("p")[1];
+        secondP.textContent = field.value;
+    });
+
+    const pokemonImage = document.getElementById("pokemon-image");
+    pokemonImage.src = pokemonData.sprites.front_default;
+    pokemonImage.alt = pokemonData.name;
+}
 
 function getTypeColor(typeName) {
     const typeColors = {
