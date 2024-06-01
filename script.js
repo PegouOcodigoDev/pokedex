@@ -1,37 +1,109 @@
-function getFirstNine() {
-    const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=9';
+const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1118'; 
+
+function getRandomPokemonList() {
     fetch(pokemonListUrl)
         .then(response => response.json())
         .then(data => {
-            const pokemonsList = document.querySelector(".pokemons");
-            pokemonsList.innerHTML = '';
-            data.results.forEach(pokemon => {
-                fetch(pokemon.url)
-                    .then(response => response.json())
-                    .then(pokemonData => {
-                        const pokemonView = document.createElement('div');
-                        pokemonView.classList.add('pokemon-view');
-                        const preInfo = document.createElement('div');
-                        preInfo.classList.add('pre-info');
-                        preInfo.innerHTML = `
-                            <p>${pokemonData.name}</p>
-                            <p>${pokemonData.id}</p>
-                            <div class="type"><i class="fas fa-dragon"></i> ${pokemonData.types[0].type.name}</div>
-                        `;
+            const allPokemonUrls = data.results.map(pokemon => pokemon.url);
+            const randomPokemonUrls = getRandomItems(allPokemonUrls, 9);
+            const requests = randomPokemonUrls.map(url => fetch(url).then(response => response.json()));
 
-                        const image = document.createElement('div');
-                        image.classList.add('image');
-                        image.innerHTML = `<img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">`;
+            Promise.all(requests)
+                .then(pokemonsData => {
+                    const pokemonsList = document.querySelector(".pokemons");
+                    pokemonsList.innerHTML = '';
 
-                        pokemonView.appendChild(preInfo);
-                        pokemonView.appendChild(image);
-
+                    pokemonsData.forEach(pokemonData => {
+                        const pokemonView = createPokemonView(pokemonData);
                         pokemonsList.appendChild(pokemonView);
-                    })
-                    .catch(error => console.log('Erro ao obter detalhes do Pokémon:', error));
-            });
+                    });
+                })
+                .catch(error => console.log('Erro ao obter detalhes dos pokémons:', error));
         })
-        .catch(error => console.log('Erro ao obter lista de Pokémon:', error));
+        .catch(error => console.log('Erro ao obter lista de pokémons:', error));
 }
 
-window.onload = getFirstNine;
+
+function getRandomItems(array, count) {
+    const shuffledArray = array.sort(() => Math.random() - 0.5); 
+    return shuffledArray.slice(0, count); 
+}
+
+
+function createPokemonView(pokemonData) {
+    const pokemonView = document.createElement('div');
+    pokemonView.classList.add('pokemon-view');
+
+    const preInfo = document.createElement('div');
+    preInfo.classList.add('pre-info');
+    preInfo.innerHTML = `
+        <p>${pokemonData.name}</p>
+        <p>${pokemonData.id}</p>
+        <div class="type"><i class="fas fa<i class="fas fa-${getTypeIcon(pokemonData.types[0].type.name)}"></i> ${pokemonData.types[0].type.name}</div>
+    `;
+
+    const image = document.createElement('div');
+    image.classList.add('image');
+    image.innerHTML = `<img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">`;
+
+
+    const typeColor = getTypeColor(pokemonData.types[0].type.name);
+    pokemonView.style.backgroundColor = typeColor;
+
+    pokemonView.appendChild(preInfo);
+    pokemonView.appendChild(image);
+
+    return pokemonView;
+}
+
+
+function getTypeColor(typeName) {
+    const typeColors = {
+        normal: '#A8A77A',
+        fire: '#EE8130',
+        water: '#6390F0',
+        electric: '#F7D02C',
+        grass: '#7AC74C',
+        ice: '#96D9D6',
+        fighting: '#C22E28',
+        poison: '#A33EA1',
+        ground: '#E2BF65',
+        flying: '#A98FF3',
+        psychic: '#F95587',
+        bug: '#A6B91A',
+        rock: '#B6A136',
+        ghost: '#735797',
+        dragon: '#6F35FC',
+        dark: '#705746',
+        steel: '#B7B7CE',
+        fairy: '#D685AD',
+    };
+
+    return typeColors[typeName.toLowerCase()] || '#000000';
+}
+
+function getTypeIcon(typeName) {
+    const typeIcons = {
+        normal: 'circle',
+        fire: 'fire',
+        water: 'water',
+        electric: 'bolt',
+        grass: 'leaf',
+        ice: 'snowflake',
+        fighting: 'fist-raised',
+        poison: 'skull-crossbones',
+        ground: 'globe-americas',
+        flying: 'feather-alt',
+        psychic: 'brain',
+        bug: 'bug',
+        rock: 'gem',
+        ghost: 'ghost',
+        dragon: 'dragon',
+        dark: 'moon',
+        steel: 'shield-alt',
+        fairy: 'magic',
+    };
+    return typeIcons[typeName.toLowerCase()] || 'question';
+}
+
+window.onload = getRandomPokemonList;

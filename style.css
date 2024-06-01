@@ -11,7 +11,6 @@
     --color-red: #ff0000;
     --color-red-dark: #fb2020;
     --color-gold: #ffd700;
-    --color-green: #008000;
     --color-deepsky: #00BFFF;
 
     --box-shadow-small: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -205,8 +204,8 @@ body {
 }
 
 .pokemon-view {
-    background-color: var(--color-green);
     display: flex;
+    border: 2px solid var(--color-black);
     border-radius: var(--border-radius-large);
     padding: 10px;
 }
@@ -217,7 +216,7 @@ body {
 }
 
 .pre-info {
-    width: 45%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -225,7 +224,7 @@ body {
 }
 
 .image {
-    width: 55%;
+    width: 35%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,6 +241,6 @@ body {
     border-radius: var(--border-radius-small);
     box-shadow: var(--box-shadow-medium);
     color: var(--color-white);
-    background-color: var(--color-red);
+    background-color: transparent;
     font-size: var(--font-size-small);
 }
