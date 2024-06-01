@@ -57,9 +57,28 @@ function createPokemonView(pokemonData) {
     return pokemonView;
 }
 
-function updateDisplayInformation(pokemonData) {
+function createDisplayInformation(){
     const displayScreen = document.querySelector(".display-information-screen");
 
+    const fields = ['Nome', 'Id', 'Tipo', 'Habilidade', 'Hp', 'Ataque', 'Dfesa'];
+    fields.forEach(field =>{
+        const div = document.createElement('div');
+        const hr = document.createElement('hr');
+        hr.classList = 'curved-hr'
+        div.innerHTML = `<p>${field}</p><p></p>`;
+        displayScreen.appendChild(div);
+        displayScreen.appendChild(hr)
+    })
+
+}
+
+function updateDisplayInformation(pokemonData) {
+    const hr = document.querySelector('hr')
+    if(!hr){
+        createDisplayInformation();
+    }
+    
+    const displayScreen = document.querySelector(".display-information-screen");
     const fields = [
         { label: "Nome", value: pokemonData.name },
         { label: "Id", value: pokemonData.id },
