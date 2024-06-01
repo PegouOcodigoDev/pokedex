@@ -12,6 +12,7 @@
     --color-red-dark: #fb2020;
     --color-gold: #ffd700;
     --color-green: #008000;
+    --color-deepsky: #00BFFF;
 
     --box-shadow-small: 0 0 5px rgba(0, 0, 0, 0.5);
     --box-shadow-medium: 0 0 5px rgba(0, 0, 0, 0.8);
@@ -130,18 +131,40 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 50%;
+    width: 60%;
 }
 
 .display-information-screen {
     width: 100%;
-    height: 50%;
+    height: 60%;
     border-radius: var(--border-radius-medium);
     background-color: var(--color-red);
     background-image: url('screen.png');
     background-repeat: repeat;
     background-size: cover;
     box-shadow: var(--box-shadow-small) var(--color-black);
+}
+
+.display-information-screen div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--padding-small);
+}
+
+.display-information-screen div p{
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    color: var(--color-deepsky);
+    font-size: var(--font-size-small);
+}
+
+.curved-hr {
+    width: 100%; 
+    height: 1px; 
+    border: none;
+    background: linear-gradient(to right, transparent 10%, var(--color-deepsky) 50%, transparent 100%); 
+    border-radius: var(--border-radius-small); 
 }
 
 .buttons {
