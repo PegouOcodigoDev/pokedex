@@ -9,11 +9,8 @@ function getRandomPokemon() {
 
             fetch(randomPokemonUrl)
                 .then(response => response.json())
-                .then(pokemonData => {
-                    updateDisplayInformation(pokemonData);
-                })
+                .then(pokemonData => updateDisplayInformation(pokemonData))
                 .catch(error => console.log('Erro ao obter os dados do pokémon:', error));
-
         })
         .catch(error => console.log('Erro ao obter a lista de pokémons:', error));
 }
@@ -39,6 +36,24 @@ function getRandomPokemonList() {
                 .catch(error => console.log('Erro ao obter detalhes dos pokémons:', error));
         })
         .catch(error => console.log('Erro ao obter lista de pokémons:', error));
+}
+
+function turnPokemonIndex(index) {
+    let currentIndexElement = document.querySelector('[name="Id"]');
+
+    let currentIndex = parseInt(currentIndexElement.textContent);
+    const newIndex = currentIndex + index;
+
+    const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${newIndex}/`;
+    
+    fetch(pokemonUrl)
+    .then(response => response.json())
+    .then(pokemonData => {
+        updateDisplayInformation(pokemonData);
+    })
+    .catch(error => {
+        console.error('Erro ao obter os dados do Pokémon:', error);
+    });
 }
 
 function createPokemonView(pokemonData) {
@@ -78,7 +93,7 @@ function createDisplayInformation() {
         const div = document.createElement('div');
         const hr = document.createElement('hr');
         hr.classList = 'curved-hr'
-        div.innerHTML = `<p>${field}</p><p></p>`;
+        div.innerHTML = `<p>${field}</p><p name="${field}"></p>`;
         displayScreen.appendChild(div);
         if (field != 'Defesa') {
             displayScreen.appendChild(hr)
