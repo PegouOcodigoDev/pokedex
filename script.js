@@ -118,7 +118,7 @@ function createPokemonView(pokemonData) {
 function createDisplayInformation() {
     const display = document.querySelector(".display-information-screen");
 
-    const fields = ['Nome', 'Id', 'Tipo', 'Habilidade', 'Hp', 'Ataque', 'Defesa'];
+    const fields = ['Name', 'Id', 'Types', 'Abilities', 'Hp', 'Attack', 'Defense'];
     fields.forEach(field => {
         const div = document.createElement('div');
         const hr = document.createElement('hr');
@@ -148,7 +148,7 @@ function updateDisplayInformation(pokemonData) {
         { label: "Nome", value: pokemonData.name },
         { label: "Id", value: pokemonData.id },
         { label: "Tipo", value: pokemonData.types.map(type => type.type.name).join(', ') },
-        { label: "Habilidade", value: pokemonData.abilities.map(ability => ability.ability.name).join(', ') },
+        { label: "Habilidade", value: pokemonData.abilities.slice(0, 2).map(ability => ability.ability.name).join(', ')  },
         { label: "Hp", value: pokemonData.stats.find(stat => stat.stat.name === 'hp').base_stat },
         { label: "Ataque", value: pokemonData.stats.find(stat => stat.stat.name === 'attack').base_stat },
         { label: "Defesa", value: pokemonData.stats.find(stat => stat.stat.name === 'defense').base_stat }
