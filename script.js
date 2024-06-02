@@ -1,5 +1,23 @@
 const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1118';
 
+function getRandomPokemon() {
+    fetch(pokemonListUrl)
+        .then(response => response.json())
+        .then(data => {
+            const allPokemonUrls = data.results.map(pokemon => pokemon.url);
+            const randomPokemonUrl = getRandomItems(allPokemonUrls, 1);
+
+            fetch(randomPokemonUrl)
+                .then(response => response.json())
+                .then(pokemonData => {
+                    updateDisplayInformation(pokemonData);
+                })
+                .catch(error => console.log('Erro ao obter os dados do pokémon:', error));
+
+        })
+        .catch(error => console.log('Erro ao obter a lista de pokémons:', error));
+}
+
 function getRandomPokemonList() {
     fetch(pokemonListUrl)
         .then(response => response.json())
@@ -21,11 +39,6 @@ function getRandomPokemonList() {
                 .catch(error => console.log('Erro ao obter detalhes dos pokémons:', error));
         })
         .catch(error => console.log('Erro ao obter lista de pokémons:', error));
-}
-
-function getRandomItems(array, count) {
-    const shuffledArray = array.sort(() => Math.random() - 0.5);
-    return shuffledArray.slice(0, count);
 }
 
 function createPokemonView(pokemonData) {
@@ -57,17 +70,17 @@ function createPokemonView(pokemonData) {
     return pokemonView;
 }
 
-function createDisplayInformation(){
+function createDisplayInformation() {
     const displayScreen = document.querySelector(".display-information-screen");
 
     const fields = ['Nome', 'Id', 'Tipo', 'Habilidade', 'Hp', 'Ataque', 'Defesa'];
-    fields.forEach(field =>{
+    fields.forEach(field => {
         const div = document.createElement('div');
         const hr = document.createElement('hr');
         hr.classList = 'curved-hr'
         div.innerHTML = `<p>${field}</p><p></p>`;
         displayScreen.appendChild(div);
-        if(field != 'Defesa'){
+        if (field != 'Defesa') {
             displayScreen.appendChild(hr)
         }
     })
@@ -76,7 +89,7 @@ function createDisplayInformation(){
 
 function updateDisplayInformation(pokemonData) {
     const hr = document.querySelector('hr')
-    if(!hr){
+    if (!hr) {
         createDisplayInformation();
     }
 
@@ -100,6 +113,11 @@ function updateDisplayInformation(pokemonData) {
     const pokemonImage = document.getElementById("pokemon-image");
     pokemonImage.src = pokemonData.sprites.front_default;
     pokemonImage.alt = pokemonData.name;
+}
+
+function getRandomItems(array, count) {
+    const shuffledArray = array.sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, count);
 }
 
 function getTypeColor(typeName) {
@@ -149,25 +167,6 @@ function getTypeIcon(typeName) {
         fairy: 'magic',
     };
     return typeIcons[typeName.toLowerCase()] || 'question';
-}
-
-
-function getRandomPokemon() {
-    fetch(pokemonListUrl)
-    .then(response => response.json())
-    .then(data => {
-        const allPokemonUrls = data.results.map(pokemon => pokemon.url);
-        const randomPokemonUrl = getRandomItems(allPokemonUrls, 1);
-        
-        fetch(randomPokemonUrl)
-        .then(response => response.json())
-        .then(pokemonData => {
-            updateDisplayInformation(pokemonData);
-        })
-        .catch(error => console.log('Erro ao obter os dados do pokémon:', error));
-        
-    })
-    .catch(error => console.log('Erro ao obter a lista de pokémons:', error));
 }
 
 window.onload = getRandomPokemonList;
