@@ -5,7 +5,7 @@ function getRandomPokemon() {
         .then(response => response.json())
         .then(data => {
             const allPokemonUrls = data.results.map(pokemon => pokemon.url);
-            const randomPokemonUrl = getRandomItems(allPokemonUrls, 1);
+            const randomPokemonUrl = getRandomItems(allPokemonUrls, 1)[0];
 
             fetch(randomPokemonUrl)
                 .then(response => response.json())
@@ -62,7 +62,12 @@ function searchPokemon() {
     const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
 
     fetch(pokemonUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Pokémon não encontrado');
+            }
+            return response.json();
+        })
         .then(pokemonData => {
             updateDisplayInformation(pokemonData);
         })
@@ -73,10 +78,7 @@ function searchPokemon() {
                 display.removeChild(display.firstChild);
             }
             const div = document.createElement('div');
-            const hr = document.createElement('hr');
-            hr.classList.add('curved-hr');
             div.innerHTML = `<p>Pokémon não encontrado</p>`;
-            display.appendChild(hr);
             display.appendChild(div);
             const pokemonImage = document.getElementById("pokemon-image");
             pokemonImage.src = 'question-mark.png';
@@ -120,23 +122,28 @@ function createDisplayInformation() {
     fields.forEach(field => {
         const div = document.createElement('div');
         const hr = document.createElement('hr');
-        hr.classList = 'curved-hr'
+        hr.classList.add('curved-hr');
         div.innerHTML = `<p>${field}</p><p name="${field}"></p>`;
         display.appendChild(div);
-        if (field != 'Defesa') {
-            display.appendChild(hr)
+        if (field !== 'Defesa') {
+            display.appendChild(hr);
         }
-    })
-
+    });
 }
 
 function updateDisplayInformation(pokemonData) {
-    const hr = document.querySelector('hr')
-    if (!hr) {
+    const display = document.querySelector(".display-information-screen");
+
+    const errorMessage = display.querySelector("div p");
+    if (errorMessage && errorMessage.textContent === "Pokémon não encontrado") {
+        errorMessage.parentElement.remove();
+    }
+
+    if (!display.querySelector('hr')) {
         createDisplayInformation();
     }
 
-    const displayScreen = document.querySelector(".display-information-screen");
+    const displayScreen = document.querySelectorAll(".display-information-screen div p");
     const fields = [
         { label: "Nome", value: pokemonData.name },
         { label: "Id", value: pokemonData.id },
@@ -148,8 +155,7 @@ function updateDisplayInformation(pokemonData) {
     ];
 
     fields.forEach((field, index) => {
-        const div = displayScreen.children[index * 2];
-        const secondP = div.querySelectorAll("p")[1];
+        const secondP = displayScreen[index * 2 + 1];
         secondP.textContent = field.value;
     });
 
