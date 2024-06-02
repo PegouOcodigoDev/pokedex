@@ -45,15 +45,43 @@ function turnPokemonIndex(index) {
     const newIndex = currentIndex + index;
 
     const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${newIndex}/`;
-    
+
     fetch(pokemonUrl)
-    .then(response => response.json())
-    .then(pokemonData => {
-        updateDisplayInformation(pokemonData);
-    })
-    .catch(error => {
-        console.error('Erro ao obter os dados do Pokémon:', error);
-    });
+        .then(response => response.json())
+        .then(pokemonData => {
+            updateDisplayInformation(pokemonData);
+        })
+        .catch(error => {
+            console.error('Erro ao obter os dados do Pokémon:', error);
+        });
+}
+
+function searchPokemon() {
+    const pokemonNameInput = document.querySelector('.search-bar');
+    const pokemonName = pokemonNameInput.value.trim().toLowerCase();
+    const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
+
+    fetch(pokemonUrl)
+        .then(response => response.json())
+        .then(pokemonData => {
+            updateDisplayInformation(pokemonData);
+        })
+        .catch(error => {
+            console.error('Erro ao obter os dados do Pokémon:', error);
+            const display = document.querySelector('.display-information-screen');
+            while (display.firstChild) {
+                display.removeChild(display.firstChild);
+            }
+            const div = document.createElement('div');
+            const hr = document.createElement('hr');
+            hr.classList.add('curved-hr');
+            div.innerHTML = `<p>Pokémon não encontrado</p>`;
+            display.appendChild(hr);
+            display.appendChild(div);
+            const pokemonImage = document.getElementById("pokemon-image");
+            pokemonImage.src = 'question-mark.png';
+            pokemonImage.alt = 'question mark';
+        });
 }
 
 function createPokemonView(pokemonData) {
@@ -86,7 +114,7 @@ function createPokemonView(pokemonData) {
 }
 
 function createDisplayInformation() {
-    const displayScreen = document.querySelector(".display-information-screen");
+    const display = document.querySelector(".display-information-screen");
 
     const fields = ['Nome', 'Id', 'Tipo', 'Habilidade', 'Hp', 'Ataque', 'Defesa'];
     fields.forEach(field => {
@@ -94,9 +122,9 @@ function createDisplayInformation() {
         const hr = document.createElement('hr');
         hr.classList = 'curved-hr'
         div.innerHTML = `<p>${field}</p><p name="${field}"></p>`;
-        displayScreen.appendChild(div);
+        display.appendChild(div);
         if (field != 'Defesa') {
-            displayScreen.appendChild(hr)
+            display.appendChild(hr)
         }
     })
 
