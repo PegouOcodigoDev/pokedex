@@ -151,4 +151,23 @@ function getTypeIcon(typeName) {
     return typeIcons[typeName.toLowerCase()] || 'question';
 }
 
+
+function getRandomPokemon() {
+    fetch(pokemonListUrl)
+    .then(response => response.json())
+    .then(data => {
+        const allPokemonUrls = data.results.map(pokemon => pokemon.url);
+        const randomPokemonUrl = getRandomItems(allPokemonUrls, 1);
+        
+        fetch(randomPokemonUrl)
+        .then(response => response.json())
+        .then(pokemonData => {
+            updateDisplayInformation(pokemonData);
+        })
+        .catch(error => console.log('Erro ao obter os dados do pokémon:', error));
+        
+    })
+    .catch(error => console.log('Erro ao obter a lista de pokémons:', error));
+}
+
 window.onload = getRandomPokemonList;
