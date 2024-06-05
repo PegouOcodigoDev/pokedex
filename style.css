@@ -139,6 +139,13 @@ body {
     font-size: var(--font-size-small);
 }
 
+.display-information div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--padding-small);
+}
+
 .curved-hr {
     width: 100%;
     height: 1px;

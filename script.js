@@ -125,7 +125,7 @@ function createDisplayInformation() {
         hr.classList.add('curved-hr');
         div.innerHTML = `<p>${field}</p><p name="${field}"></p>`;
         display.appendChild(div);
-        if (field !== 'Defesa') {
+        if (field !== 'Defense') {
             display.appendChild(hr);
         }
     });
@@ -134,7 +134,7 @@ function createDisplayInformation() {
 function updateDisplayInformation(pokemonData) {
     const display = document.querySelector(".display-information");
 
-    const errorMessage = display.querySelector("p");
+    const errorMessage = display.querySelector("div p");
     if (errorMessage && errorMessage.textContent === "Pokémon não encontrado") {
         errorMessage.parentElement.remove();
     }
@@ -143,7 +143,7 @@ function updateDisplayInformation(pokemonData) {
         createDisplayInformation();
     }
 
-    const displayScreen = document.querySelectorAll(".display-information p");
+    const displayScreen = document.querySelectorAll(".display-information div p");
     const fields = [
         { label: "Nome", value: pokemonData.name },
         { label: "Id", value: pokemonData.id },
