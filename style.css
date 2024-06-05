@@ -133,8 +133,7 @@ body {
     background-repeat: repeat;
     background-size: cover;
     box-shadow: var(--box-shadow-small) var(--color-black);
-    padding-left: var(--padding-small);
-    padding-top: var(--padding-small);
+    padding: var(--padding-small);
     color: var(--color-deepsky);
     font-size: var(--font-size-small);
 }
