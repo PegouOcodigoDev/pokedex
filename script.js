@@ -73,7 +73,7 @@ function searchPokemon() {
         })
         .catch(error => {
             console.error('Erro ao obter os dados do Pokémon:', error);
-            const display = document.querySelector('.display-information-screen');
+            const display = document.querySelector('.display-information');
             while (display.firstChild) {
                 display.removeChild(display.firstChild);
             }
@@ -116,7 +116,7 @@ function createPokemonView(pokemonData) {
 }
 
 function createDisplayInformation() {
-    const display = document.querySelector(".display-information-screen");
+    const display = document.querySelector(".display-information");
 
     const fields = ['Name', 'Id', 'Types', 'Abilities', 'Hp', 'Attack', 'Defense'];
     fields.forEach(field => {
@@ -132,9 +132,9 @@ function createDisplayInformation() {
 }
 
 function updateDisplayInformation(pokemonData) {
-    const display = document.querySelector(".display-information-screen");
+    const display = document.querySelector(".display-information");
 
-    const errorMessage = display.querySelector("div p");
+    const errorMessage = display.querySelector("p");
     if (errorMessage && errorMessage.textContent === "Pokémon não encontrado") {
         errorMessage.parentElement.remove();
     }
@@ -143,7 +143,7 @@ function updateDisplayInformation(pokemonData) {
         createDisplayInformation();
     }
 
-    const displayScreen = document.querySelectorAll(".display-information-screen div p");
+    const displayScreen = document.querySelectorAll(".display-information p");
     const fields = [
         { label: "Nome", value: pokemonData.name },
         { label: "Id", value: pokemonData.id },
